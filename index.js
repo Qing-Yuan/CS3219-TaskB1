@@ -7,15 +7,6 @@ let mongoose = require('mongoose');
 // Initialise the app
 let app = express();
 
-const MongoClient = require('mongodb').MongoClient;
-const uri = "mongodb+srv://qingyuan:qingyuan2910@cluster0.3begd.mongodb.net/Postmann?retryWrites=true&w=majority";
-const client = new MongoClient(uri, { useNewUrlParser: true }, { useUnifiedTopology: true });
-client.connect(err => {
-  const collection = client.db("test").collection("devices");
-  // perform actions on the collection object
-  client.close();
-});
-
 // Import routes
 let apiRoutes = require("./api-routes");
 // Configure bodyparser to handle post requests
@@ -24,7 +15,7 @@ app.use(bodyParser.urlencoded({
 }));
 app.use(bodyParser.json());
 // Connect to Mongoose and set connection variable
-mongoose.connect('mongodb://localhost/resthub', { useNewUrlParser: true});
+mongoose.connect("mongodb+srv://qingyuan:qingyuan2910@cluster0.3begd.mongodb.net/Postmann?retryWrites=true&w=majority", { useNewUrlParser: true});
 var db = mongoose.connection;
 
 // Added check for DB connection
